@@ -1,41 +1,38 @@
 import React, { Component } from 'react';
 
-export default class AddToList extends Component {
+const MEASUREMENT_TYPES = {WEIGHT: 'weight', PIECES: 'pieces'};
+
+export default class ItemEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
-            weightNumber: "",
-            type: "weight",
-            warn: false,
-            done: false,
-            added: "",
+            itemName: "",
+            itemQuantity: "",
+            measurementType: MEASUREMENT_TYPES.WEIGHT,
+            showWarning: false
         }
-        this.Change = this.Change.bind(this);
-        this.checked = this.checked.bind(this);
-        this.addNew = this.addNew.bind(this);
+        this.onItemValueChange = this.onItemValueChange.bind(this);
+        this.onItemMeasurementChange = this.onItemMeasurementChange.bind(this);
+        this.addNewItem = this.addNewItem.bind(this);
     }
 
-    Change(event){
+    onItemValueChange(event){
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    checked(event){
+    onItemMeasurementChange(event){
         this.setState({
-            type: event.target.value
+            measurementType: event.target.value
         })
     }
-    addNew() {
-        if(this.state.name !== "" && this.state.weightNumber !== "")
-        {
-            this.setState({ done: true});
-            this.setState({ warn: false});
-            this.setState({ added: this.state.name });
+    addNewItem() {
+        if(this.state.itemName && this.state.itemQuantity) {
+            this.setState({ showWarning: false});
             
             const a = {
-                name: this.state.name,
-                type: this.state.type,
-                weightNumber: this.state.weightNumber,
+                itemName: this.state.itemName,
+                measurementType: this.state.measurementType,
+                itemQuantity: this.state.itemQuantity,
                 id: Math.floor(Math.random() * 10000) + 1 + "aaa"
             }
             const shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
@@ -43,27 +40,22 @@ export default class AddToList extends Component {
             shoppingList.need = [...shoppingList.need, a];
 
             localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
-            
-            //console.log(JSON.parse(localStorage.getItem('shoppingList')));
 
-            this.setState({ name: "" });
-            this.setState({ weightNumber: "" });
+            this.setState({ 
+                itemName: "",
+                itemQuantity: "" 
+            });
         }   
-        else
-        { 
-            this.setState({ done: false});
-            this.setState({ warn: true});
+        else {
+            this.setState({ showWarning: true});
         }
     }
   render() {
-    const warning = this.state.warn && 
+    const warning = this.state.showWarning && 
                 <div className="warning">Please check the entered!</div>
-    const done = this.state.done && 
-                <div className="done">{this.state.added} successfully added</div>
-    
     return (
-        <div className="">
-            <h3>Enter information about the new task:</h3>
+        <div>
+            <h3>Please, provide new item information:</h3>
             <div className="add-to-list">
                 <div>
                     <div className="put">
@@ -71,40 +63,38 @@ export default class AddToList extends Component {
                         <input
                             className="input"
                             type="text" 
-                            value={this.state.name}
-                            name="name"
-                            onChange={this.Change}
+                            value={this.state.itemName}
+                            name="itemName"
+                            onChange={this.onItemValueChange}
                         />
                     </div>
                     <div className="put">
                             <input 
                                 type="radio"
-                                name="type"
+                                name="measurementType"
                                 value="weight"
-                                checked={this.state.type === "weight"}
-                                onChange={this.checked}
+                                checked={this.state.measurementType === MEASUREMENT_TYPES.WEIGHT}
+                                onChange={this.onItemMeasurementChange}
                             />weight
                             <input 
                                 type="radio" 
-                                name="type"
+                                name="measurementType"
                                 value="pieces"
-                                checked={this.state.type === "pieces"}
-                                onChange={this.checked}
+                                checked={this.state.measurementType === MEASUREMENT_TYPES.PIECES}
+                                onChange={this.onItemMeasurementChange}
                             />pieces:
                             <input 
                                 className="input"
                                 type="text" 
-                                value={this.state.weightNumber}
-                                name="weightNumber"
-                                onChange={this.Change}
+                                value={this.state.itemQuantity}
+                                name="itemQuantity"
+                                onChange={this.onItemValueChange}
                             />
                     </div>
                 </div>
             </div>
-            <button className="add-button" onClick={this.addNew}>Add</button>
-            {done}
+            <button className="add-button" onClick={this.addNewItem}>Add</button>
             {warning}
-            
         </div>
     );
   }

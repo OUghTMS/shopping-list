@@ -10,7 +10,7 @@ export default class NeedList extends Component {
                 item={list}/>
         })
     return (
-        <div className="">
+        <div>
             {item}
         </div>
     );

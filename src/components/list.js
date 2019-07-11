@@ -53,7 +53,7 @@ export default class List extends Component {
   }
   render() {
     return (
-        <div className="">
+        <div>
           <h3>Need:</h3>
           <div>
             <NeedList need={this.state.need} y={this.complete} n={this.cancel}/>

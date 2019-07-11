@@ -7,9 +7,9 @@ export default class NeedItem extends Component {
       <div className="item">
         <div className="item-head">
           <div className="item-short-descr">
-              <div className="item-name">{item.name}</div>
-              <div className="item-type">{item.type}:</div>
-              <div className="item-weight-number">{item.weightNumber}</div>
+              <div className="item-name">{item.itemName}</div>
+              <div className="item-type">{item.measurementType}:</div>
+              <div className="item-weight-number">{item.itemQuantity}</div>
           </div>
           <button className="arrow">🢓</button>
         </div>
