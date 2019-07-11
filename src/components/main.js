@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
 
 import List from './list';
-import AddToList from './add-to-list';
+import ItemEdit from './add-to-list';
 
 export default class NavBar extends Component {
   render() {
@@ -10,7 +10,7 @@ export default class NavBar extends Component {
         <div className="main">
             <Switch>
                 <Route path="/" exact component={List} /> />
-                <Route path="/add" exact component={AddToList} />
+                <Route path="/add" exact component={ItemEdit} />
             </Switch>
         </div>
     );
