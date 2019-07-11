@@ -8,14 +8,11 @@ import Header from './components/header';
 import Main from './components/main';
 
 export default class App extends Component {
-  constructor(props){
-    super(props);
-    //localStorage.clear();
+  componentDidMount() {
     if(localStorage.length === 0){
       const start = {need: [], completed: []};
       localStorage.setItem('shoppingList', JSON.stringify(start));
     }
-    console.log(JSON.parse(localStorage.getItem('shoppingList')));
   }
   render() {
     return (
