@@ -8,12 +8,6 @@ import Header from './components/header';
 import Main from './components/main';
 
 export default class App extends Component {
-  componentDidMount() {
-    if(localStorage.length === 0){
-      const start = {need: [], completed: []};
-      localStorage.setItem('shoppingList', JSON.stringify(start));
-    }
-  }
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL}>

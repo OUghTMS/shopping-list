@@ -16,7 +16,11 @@ export default class List extends Component {
     this.cancel = this.cancel.bind(this);
   }
 
-  componentWillMount(){
+  componentDidMount(){
+    if(localStorage.length === 0){
+      const start = {need: [], completed: []};
+      localStorage.setItem('shoppingList', JSON.stringify(start));
+    }
     const shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
     this.setState({
       need: shoppingList.need,
