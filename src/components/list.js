@@ -21,10 +21,10 @@ export default class List extends Component {
       const start = {need: [], completed: []};
       localStorage.setItem('shoppingList', JSON.stringify(start));
     }
-    const shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
+    const {need, completed} = JSON.parse(localStorage.getItem('shoppingList'));
     this.setState({
-      need: shoppingList.need,
-      completed: shoppingList.completed,
+      need: need,
+      completed: completed,
     });
   }
 
