@@ -4,10 +4,10 @@ import CompletedItem from './completed-item'
 
 export default class NeedList extends Component {
   render() {
-    const item = this.props.completed.map(list => { 
+    const item = this.props.completed.map(item => { 
       return <CompletedItem 
-                key={list.id}
-                item={list}/>
+                key={item.id}
+                item={item}/>
         })
     return (
         <div>
