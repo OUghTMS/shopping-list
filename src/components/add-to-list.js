@@ -27,13 +27,11 @@ export default class ItemEdit extends Component {
     }
     addNewItem() {
         if(this.state.itemName && this.state.itemQuantity) {
-            this.setState({ showWarning: false});
-            
             const a = {
                 itemName: this.state.itemName,
                 measurementType: this.state.measurementType,
                 itemQuantity: this.state.itemQuantity,
-                id: Math.floor(Math.random() * 10000) + 1 + "aaa"
+                id: Date.now()
             }
             const shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
 
@@ -43,8 +41,11 @@ export default class ItemEdit extends Component {
 
             this.setState({ 
                 itemName: "",
-                itemQuantity: "" 
+                itemQuantity: "", 
+                showWarning: false
             });
+
+            window.location.replace("/");
         }   
         else {
             this.setState({ showWarning: true});
