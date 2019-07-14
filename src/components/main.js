@@ -9,7 +9,7 @@ export default class NavBar extends Component {
     return (
         <div className="main">
             <Switch>
-                <Route path="/" exact component={List} /> />
+                <Route path="/" exact component={List} />
                 <Route path="/add" exact component={ItemEdit} />
             </Switch>
         </div>
