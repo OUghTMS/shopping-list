@@ -28,10 +28,10 @@ export default class List extends Component {
     });
   }
 
-  cancel(pr) {
+  cancel(id) {
     let arr = [...this.state.need];
     for(let i=0; i<arr.length; i++)
-      if(pr === arr[i].id) arr.splice(i, 1);
+      if(id === arr[i].id) arr.splice(i, 1);
     localStorage.setItem('shoppingList', JSON.stringify(
         {need: arr,
         completed: [...this.state.completed]}
@@ -41,11 +41,11 @@ export default class List extends Component {
     })
   }
 
-  complete(pr) {
+  complete(id) {
     let arr = [...this.state.need];
     let a;
     for(let i=0; i<arr.length; i++)
-      if(pr === arr[i].id) a=arr.splice(i, 1);
+      if(id === arr[i].id) a=arr.splice(i, 1);
     localStorage.setItem('shoppingList', JSON.stringify(
         {need: arr,
         completed: [...this.state.completed, ...a]}
@@ -60,7 +60,7 @@ export default class List extends Component {
         <div>
           <h3>Need:</h3>
           <div>
-            <NeedList need={this.state.need} y={this.complete} n={this.cancel}/>
+            <NeedList need={this.state.need} complete={this.complete} cancel={this.cancel}/>
           </div>
           <h3>Completed:</h3>
           <div>

@@ -8,8 +8,8 @@ export default class NeedList extends Component {
       return <NeedItem 
               key={item.id} 
               item={item} 
-              cancel={this.props.n} 
-              complete={this.props.y}/>
+              cancel={this.props.cancel} 
+              complete={this.props.complete}/>
       })
     return (
         <div>
