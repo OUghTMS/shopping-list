@@ -10,7 +10,6 @@ export default class CompletedItem extends Component {
                 <div className="item-type">{measurementType}:</div>
                 <div className="item-weight-number">{itemQuantity}</div>
             </div>
-            <button className="arrow">🢓</button>
         </div>
     );
   }
