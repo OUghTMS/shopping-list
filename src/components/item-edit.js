@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-const MEASUREMENT_TYPES = {WEIGHT: 'weight', PIECES: 'pieces'};
+import MeasurementType from './measurement-type'
+
+const MEASUREMENT_TYPES = {KILOGRAMS: 'Kilograms', PIECES: 'Pieces', LITERS: 'Liters' };
 
 export default class ItemEdit extends Component {
     constructor(props) {
@@ -8,7 +10,7 @@ export default class ItemEdit extends Component {
         this.state = {
             itemName: "",
             itemQuantity: "",
-            measurementType: MEASUREMENT_TYPES.WEIGHT,
+            measurementType: MEASUREMENT_TYPES.PIECES,
             showWarning: false
         }
         this.onItemValueChange = this.onItemValueChange.bind(this);
@@ -21,10 +23,10 @@ export default class ItemEdit extends Component {
     }
 
     onItemMeasurementChange(event){
-        this.setState({
-            measurementType: event.target.value
-        })
+        this.setState({measurementType: event.target.value});
+        console.log(this.state.measurementType);
     }
+
     addNewItem() {
         if(this.state.itemName && this.state.itemQuantity) {
             const a = {
@@ -60,9 +62,9 @@ export default class ItemEdit extends Component {
             <div className="add-to-list">
                 <div>
                     <div className="put">
-                        Name: 
                         <input
-                            className="input"
+                            placeholder="Name"
+                            className="input focus-bg"
                             type="text" 
                             value={this.state.itemName}
                             name="itemName"
@@ -70,27 +72,15 @@ export default class ItemEdit extends Component {
                         />
                     </div>
                     <div className="put">
-                            <input 
-                                type="radio"
-                                name="measurementType"
-                                value="weight"
-                                checked={this.state.measurementType === MEASUREMENT_TYPES.WEIGHT}
-                                onChange={this.onItemMeasurementChange}
-                            />weight
-                            <input 
-                                type="radio" 
-                                name="measurementType"
-                                value="pieces"
-                                checked={this.state.measurementType === MEASUREMENT_TYPES.PIECES}
-                                onChange={this.onItemMeasurementChange}
-                            />pieces:
-                            <input 
-                                className="input"
-                                type="text" 
-                                value={this.state.itemQuantity}
-                                name="itemQuantity"
-                                onChange={this.onItemValueChange}
-                            />
+                        <MeasurementType measurementType={this.state.measurementType} onItemMeasurementChange={this.onItemMeasurementChange}/>
+                        <input 
+                            placeholder={this.state.measurementType}
+                            className="input focus-bg"
+                            type="text" 
+                            value={this.state.itemQuantity}
+                            name="itemQuantity"
+                            onChange={this.onItemValueChange}
+                        />
                     </div>
                 </div>
             </div>
