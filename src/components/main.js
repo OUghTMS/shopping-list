@@ -7,12 +7,12 @@ import ItemEdit from './add-to-list';
 export default class NavBar extends Component {
   render() {
     return (
-        <div className="main">
-            <Switch>
-                <Route path="/" exact component={List} />
-                <Route path="/add" exact component={ItemEdit} />
-            </Switch>
-        </div>
+      <div className="main">
+        <Switch>
+          <Route path="/" exact component={List} />
+          <Route path="/add" exact component={ItemEdit} />
+        </Switch>
+      </div>
     );
   }
 }

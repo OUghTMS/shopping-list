@@ -29,30 +29,26 @@ export default class List extends Component {
   }
 
   cancel(id) {
-    let arr = [...this.state.need];
-    for(let i=0; i<arr.length; i++)
-      if(id === arr[i].id) arr.splice(i, 1);
+    const newNeedList = this.state.need.filter(item => id !== item.id);
     localStorage.setItem('shoppingList', JSON.stringify(
-        {need: arr,
+        {need: newNeedList,
         completed: [...this.state.completed]}
       ));
     this.setState({
-      need: arr
+      need: newNeedList
     })
   }
 
   complete(id) {
-    let arr = [...this.state.need];
-    let a;
-    for(let i=0; i<arr.length; i++)
-      if(id === arr[i].id) a=arr.splice(i, 1);
-    localStorage.setItem('shoppingList', JSON.stringify(
-        {need: arr,
-        completed: [...this.state.completed, ...a]}
-      ));
+    const newNeedList = this.state.need.filter(item => id !== item.id);
+    const newCompletedList = this.state.need.filter(item => id === item.id);
+    localStorage.setItem('shoppingList', JSON.stringify({
+      need: newNeedList,
+      completed: [...this.state.completed, ...newCompletedList]
+    }));
     this.setState({
-      need: arr,
-      completed: [...this.state.completed, ...a]
+      need: newNeedList,
+      completed: [...this.state.completed, ...newCompletedList]
     })
   }
   render() {
