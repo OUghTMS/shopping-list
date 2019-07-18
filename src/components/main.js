@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
 
 import List from './list';
-import ItemEdit from './add-to-list';
+import ItemEdit from './item-edit';
 
 export default class NavBar extends Component {
   render() {
